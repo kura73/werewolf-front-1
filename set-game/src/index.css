@@ -1,0 +1,90 @@
+/**
+.box {
+  line-height: 34px;
+  height: calc(100vh - 6em);
+  width: 100%;
+  max-width: 500px;
+  padding: 1em 1em;
+  margin: 2em 2em;
+  font-weight: nomal;
+  border: solid 1px #000000;
+}
+.box p {
+    margin: 0; 
+    padding: 0;
+}
+
+
+.box1 {
+  overflow-y: scroll;
+  line-height: 34px;
+  height-max: 100%;
+  width-max: 100%;
+  padding: 0.5em 0.5em;
+  margin: 0.5em 0;
+  font-weight: nomal;
+  border: solid 1px #000000;
+}
+.box1 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.box2 {
+  text-align: center;
+  background-color: white;
+  width: 150px;
+  padding: 0.5em 0.5em;
+  margin: 1em 3em;
+  font-weight: nomal;
+  text-align: center;
+  border: solid 1px #000000;
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
+*/
+.container {
+  padding: 2em;
+  display: inline-flex;
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: 1fr 1fr minmax(150px, 20%);
+  grid-template-rows: auto;
+  grid-template-areas: "leftArea centerArea rightArea";
+  justify-content: space-around;
+}
+
+.left-area {
+  grid-area: leftArea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.center-area {
+  grid-area: centerArea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.right-area {
+  grid-area: rightArea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.dropdown-list {
+  display: flex;
+}
+/*
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.Buttons {
+  text-align: center;
+}*/
