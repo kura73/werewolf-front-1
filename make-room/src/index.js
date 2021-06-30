@@ -32,10 +32,13 @@ function RoomMake () {
     .catch((error) => {
       console.error(error);
     });
+    //チャットルームに移動
+    location.href="url";
   }
-
+  
+  //前のページに戻る
   const hundleClickBack = () => {
-
+    location.href="url"; 
   }
 
   const passElement = (isVisible) => {
