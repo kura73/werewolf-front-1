@@ -1,16 +1,16 @@
-import React from "https://cdn.skypack.dev/react";
-import ReactDOM from "https://cdn.skypack.dev/react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import './index.css';
 
-import { useState } from "https://cdn.skypack.dev/react";
+import { useState } from "react";
 
-function RoomMake {
+function RoomMake () {
   const[roomName, setRoomName] = useState("");
   const[peopleLimid, setPeopleLimid] = useState(10);
-  const[passwordExsit, setPasswordExsit] = useState();
+  const[passwordExsit, setPasswordExsit] = useState(false);
   const[password, setPassword] = useState("");
   const[intro, setIntro] = useState("");
-  
+
   //作成ボタンのクリック時動作
   const hundleClickMake = () => {
     const fd = new FormData();
@@ -19,7 +19,7 @@ function RoomMake {
     fd.set("passwordExsit", setPasswordExsit);
     fd.set("password", setPassword);
     fd.set("intro", setIntro);
-    
+
     //サーバに送信
     fetch("/gameSettings-registry", {
       method: "PUT",
@@ -33,9 +33,24 @@ function RoomMake {
       console.error(error);
     });
   }
- 
-  
-  render() {
+
+  const hundleClickBack = () => {
+
+  }
+
+  const passElement = (isVisible) => {
+    if (isVisible === true) {
+      return (
+        <div>
+          パスワード：
+          <input id="password" value={password} onChange={(event) => {setPassword(event.target.value)}} />
+        </div>
+      )
+    };
+    return ;
+  }
+
+
     return (
       <div className="container">
         <div className="center-area">
@@ -50,7 +65,7 @@ function RoomMake {
               </div>
               <div>
                 人数制限　：　　　
-                <select id="peopleLimid" value={peopleLimid} onChange={(event) => {setPepleLimid(event.target.value)}}>
+                <select id="peopleLimid" value={peopleLimid} onChange={(event) => {setPeopleLimid(event.target.value)}}>
                   <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -65,13 +80,10 @@ function RoomMake {
                 </select>
               </div>
               <div>
-                鍵の部屋　：
-                <input type="checkbox" id="passwordExsit" value="1"  checked={this.state.confirm === "1"} onChange={(event) => {setPasswordExsit(event.target.value)}}  /* ←ココ！！　*/ /> 
+                パスワードあり：
+                <input type="checkbox" id="passwordExsit"  checked={passwordExsit} onChange={() => {setPasswordExsit(!passwordExsit)}} /> 
               </div>
-              <div>
-                パスワード：
-                <input id="password" value={password} onChange={(event) => {setPassword(event.target.value)}} />
-              </div>
+                {passElement(passwordExsit)}
               <div>
                 <p><u>紹介文</u></p>
                 <textarea id="intro" rows="10" cols="34" value={intro} onChange={(event) => {setIntro(event.target.value)}} />
@@ -85,7 +97,6 @@ function RoomMake {
         </div>
       </div>
     );
-  }
 }
 
 ReactDOM.render(
